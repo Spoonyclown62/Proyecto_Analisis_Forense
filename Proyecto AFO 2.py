@@ -83,7 +83,8 @@ firma_alice = firmar(contenido_pdf, clave_privada_alice)
 agregar_firma_pdf(archivo_pdf, str(firma_alice))
 
 # Obtener la firma del PDF
-firma_obtenida = obtener_firma_pdf('documentofake.pdf')
+#firma_obtenida = obtener_firma_pdf('documentofake.pdf')
+firma_obtenida = obtener_firma_pdf('documento_firmado.pdf')
 
 # Verificar la firma digital utilizando la clave pública de Alice
 verificacion = verificar(contenido_pdf, int(firma_obtenida), clave_publica_alice)
