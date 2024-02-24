@@ -93,3 +93,26 @@ if verificacion:
     print("La firma digital del contrato es válida.")
 else:
     print("La firma digital del contrato no es válida.")
+
+# Generar claves RSA de la (AC)
+clave_publica_ac, clave_privada_ac = generar_claves(1024)
+
+# Firmar digitalmente el contenido del PDF con la clave privada de la AC
+firma_ac = firmar(contenido_pdf, clave_privada_ac)
+
+# Agregar la firma de la AC al PDF
+agregar_firma_pdf('documento_firmado.pdf', str(firma_ac))
+
+# Obtener el contenido del PDF firmado
+contenido_pdf_firmado = leer_pdf('documento_firmado.pdf')
+
+# Obtener el hash del PDF firmado
+hash_pdf_firmado = calcular_hash(contenido_pdf_firmado)
+
+# Verificar la firma digital utilizando la clave pública de la AC
+verificacion_ac = verificar(contenido_pdf_firmado, int(firma_ac), clave_publica_ac)
+
+if verificacion_ac:
+    print("La firma digital de la Autoridad Certificadora es válida.")
+else:
+    print("La firma digital de la Autoridad Certificadora no es válida.")
